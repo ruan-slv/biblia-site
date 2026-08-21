@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bíblia e Harpa — Política de Privacidade</title>
+  <meta name="description" content="Política de privacidade do aplicativo Bíblia e Harpa. Nenhum dado pessoal é coletado, armazenado ou compartilhado.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✝️</text></svg>">
+
+  <!-- ==================== ESTILOS (no mesmo arquivo) ==================== -->
+  <style>
+    :root {
+      --bg: #f6f2ea;
+      --card: #fffdf8;
+      --ink: #2e2a24;
+      --muted: #6d6459;
+      --navy: #1d3557;
+      --navy-deep: #142640;
+      --gold: #b08d3e;
+      --gold-soft: #e9d9b5;
+      --line: #e6dfd2;
+      --shadow: 0 10px 30px rgba(46, 42, 36, 0.08);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Georgia, 'Times New Roman', serif;
+      line-height: 1.7;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ---------- Barra de progresso de leitura ---------- */
+    #progressBar {
+      position: fixed;
+      top: 0; left: 0;
+      height: 4px;
+      width: 0;
+      background: linear-gradient(90deg, var(--gold), #d8b968);
+      z-index: 100;
+    }
+
+    /* ---------- Cabeçalho ---------- */
+    .topbar {
+      background: var(--navy);
+      color: #fff;
+      padding: 1.1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      box-shadow: 0 2px 12px rgba(20, 38, 64, 0.25);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+      color: #fff;
+      font-size: 1.25rem;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-mark {
+      color: var(--gold-soft);
+      font-size: 1.5rem;
+      line-height: 1;
+    }
+
+    .brand em { color: var(--gold-soft); font-style: normal; }
+
+    .btn-print {
+      font-family: inherit;
+      font-size: 0.85rem;
+      color: var(--navy-deep);
+      background: var(--gold-soft);
+      border: 1px solid var(--gold);
+      border-radius: 999px;
+      padding: 0.45rem 1.1rem;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .btn-print:hover { background: #f3e6c4; transform: translateY(-1px); }
+
+    /* ---------- Título ---------- */
+    .page-title {
+      text-align: center;
+      padding: 3rem 1.5rem 1.5rem;
+    }
+
+    .page-title .kicker {
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      font-size: 0.75rem;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+    }
+
+    .page-title h1 {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      color: var(--navy);
+      line-height: 1.25;
+    }
+
+    .updated-badge {
+      display: inline-block;
+      margin-top: 0.9rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0.3rem 1rem;
+    }
+
+    /* ---------- Corpo: sumário + documento ---------- */
+    .layout {
+      flex: 1;
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem 3rem;
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .toc {
+      position: sticky;
+      top: 1.5rem;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 1.1rem 1.2rem;
+      box-shadow: var(--shadow);
+    }
+
+    .toc h2 {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      margin-bottom: 0.7rem;
+    }
+
+    .toc ul { list-style: none; }
+
+    .toc a {
+      display: block;
+      padding: 0.4rem 0.6rem;
+      margin: 0 0 0.15rem;
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--ink);
+      font-size: 0.95rem;
+      border-left: 3px solid transparent;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+    }
+
+    .toc a:hover { background: #f3ecdd; }
+
+    .toc a.is-active {
+      background: #f3ecdd;
+      border-left-color: var(--gold);
+      color: var(--navy);
+      font-weight: bold;
+    }
+
+    /* ---------- Documento ---------- */
+    .privacy-doc {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-top: 4px solid var(--gold);
+      border-radius: 12px;
+      padding: 2.2rem 2.4rem;
+      box-shadow: var(--shadow);
+    }
+
+    .privacy-doc > p { margin-bottom: 1.2rem; }
+
+    .privacy-doc section {
+      margin-top: 1.8rem;
+      scroll-margin-top: 1.5rem;
+    }
+
+    .privacy-doc h3 {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      color: var(--navy);
+      font-size: 1.15rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .sec-num {
+      flex: 0 0 auto;
+      width: 1.7rem;
+      height: 1.7rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: var(--navy);
+      color: var(--gold-soft);
+      font-size: 0.9rem;
+    }
+
+    .privacy-doc section p { color: #4a443c; }
+
+    /* ---------- Rodapé ---------- */
+    .footer {
+      background: var(--navy-deep);
+      color: #cfd8e6;
+      text-align: center;
+      padding: 1.4rem 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    .footer a { color: var(--gold-soft); text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+
+    /* ---------- Botão voltar ao topo ---------- */
+    #topBtn {
+      position: fixed;
+      right: 1.4rem;
+      bottom: 1.4rem;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      border: 1px solid var(--gold);
+      background: var(--navy);
+      color: var(--gold-soft);
+      font-size: 1.2rem;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(12px);
+      pointer-events: none;
+      transition: opacity 0.25s, transform 0.25s;
+      box-shadow: var(--shadow);
+      z-index: 90;
+    }
+
+    #topBtn.is-visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    #topBtn:hover { background: var(--navy-deep); }
+
+    /* ---------- Responsivo ---------- */
+    @media (max-width: 720px) {
+      .layout { grid-template-columns: 1fr; gap: 1.2rem; padding: 1rem 1rem 2.5rem; }
+
+      .toc { position: static; }
+      .toc ul { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+      .toc a { border-left: none; border: 1px solid var(--line); border-radius: 999px; padding: 0.3rem 0.9rem; font-size: 0.85rem; }
+      .toc a.is-active { border-color: var(--gold); }
+
+      .privacy-doc { padding: 1.6rem 1.3rem; }
+      .page-title { padding: 2.2rem 1rem 1.2rem; }
+    }
+
+    /* ---------- Impressão ---------- */
+    @media print {
+      #progressBar, #topBtn, .btn-print, .toc, .footer { display: none; }
+      .topbar { background: #fff; color: #000; box-shadow: none; }
+      .brand { color: #000; }
+      .brand-mark, .brand em { color: #000; }
+      body { background: #fff; }
+      .layout { display: block; max-width: 100%; padding: 0; }
+      .privacy-doc { border: none; box-shadow: none; padding: 1rem 0; }
+      .page-title { padding: 1rem 0 0.5rem; }
+    }
+  </style>
+</head>
+
+<body id="topo">
+
+  <div id="progressBar" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="brand" href="#topo" aria-label="Bíblia e Harpa — voltar ao início">
+      <span class="brand-mark" aria-hidden="true">✝</span>
+      <span>Bíblia <em>&amp;</em> Harpa</span>
+    </a>
+    <button id="printBtn" class="btn-print" type="button" aria-label="Imprimir a política de privacidade">🖨 Imprimir</button>
+  </header>
+
+  <div class="page-title">
+    <p class="kicker">Documento oficial</p>
+    <h1>Política de Privacidade</h1>
+    <span class="updated-badge">Última atualização: 6 de maio de 2025</span>
+  </div>
+
+  <main class="layout">
+
+    <!-- Sumário (navegação) -->
+    <nav class="toc" aria-label="Sumário da política">
+      <h2>Nesta página</h2>
+      <ul>
+        <li><a href="#intro" class="is-active">Introdução</a></li>
+        <li><a href="#coleta">1. Coleta de Dados</a></li>
+        <li><a href="#permissoes">2. Permissões</a></li>
+        <li><a href="#anuncios">3. Anúncios e Terceiros</a></li>
+        <li><a href="#alteracoes">4. Alterações nesta Política</a></li>
+      </ul>
+    </nav>
+
+    <!-- ===== CONTEÚDO PRINCIPAL: POLÍTICA DE PRIVACIDADE ===== -->
+    <article class="privacy-doc">
+
+      <section id="intro">
+        <p>
+          O aplicativo Bíblia e Harpa foi desenvolvido com o objetivo de proporcionar aos
+          usuários uma experiência cristã edificante, segura e respeitosa. Valorizamos sua
+          privacidade e queremos deixar claro nosso compromisso com a proteção das suas
+          informações.
+        </p>
+      </section>
+
+      <section id="coleta">
+        <h3><span class="sec-num" aria-hidden="true">1</span> Coleta de Dados</h3>
+        <p>
+          Não coletamos, armazenamos ou compartilhamos qualquer dado pessoal dos usuários.
+          O aplicativo funciona completamente offline e não solicita cadastro, login ou
+          qualquer informação identificável.
+        </p>
+      </section>
+
+      <section id="permissoes">
+        <h3><span class="sec-num" aria-hidden="true">2</span> Permissões</h3>
+        <p>
+          As permissões solicitadas pelo aplicativo, quando necessárias, servem unicamente
+          para permitir o funcionamento adequado de suas funcionalidades. Por exemplo, o app
+          pode solicitar acesso ao armazenamento local para que o usuário possa selecionar
+          músicas do seu dispositivo. Nenhuma dessas informações é coletada, armazenada ou
+          compartilhada com terceiros. Todo o processamento ocorre localmente no aparelho
+          do usuário.
+        </p>
+      </section>
+
+      <section id="anuncios">
+        <h3><span class="sec-num" aria-hidden="true">3</span> Anúncios e Terceiros</h3>
+        <p>
+          O aplicativo não exibe anúncios e não utiliza serviços de terceiros que possam
+          coletar dados dos usuários.
+        </p>
+      </section>
+
+      <section id="alteracoes">
+        <h3><span class="sec-num" aria-hidden="true">4</span> Alterações nesta Política</h3>
+        <p>
+          Podemos atualizar esta política de tempos em tempos. Caso isso ocorra, a nova
+          versão será disponibilizada nesta seção do aplicativo ou na loja de aplicativos
+          correspondente.
+        </p>
+      </section>
+
+    </article>
+  </main>
+
+  <footer class="footer">
+    <p>© 2025 <strong>Bíblia &amp; Harpa</strong> — Nenhum dado pessoal é coletado.</p>
+    <a href="#topo">Voltar ao topo</a>
+  </footer>
+
+  <button id="topBtn" type="button" aria-label="Voltar ao topo">↑</button>
+
+  <!-- ==================== JAVASCRIPT (no mesmo arquivo) ==================== -->
+  <script>
+    (function () {
+      'use strict';
+
+      var progressBar = document.getElementById('progressBar');
+      var topBtn = document.getElementById('topBtn');
+      var printBtn = document.getElementById('printBtn');
+
+      /* --- Barra de progresso de leitura + botão "voltar ao topo" --- */
+      function onScroll() {
+        var doc = document.documentElement;
+        var max = doc.scrollHeight - doc.clientHeight;
+        var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+        progressBar.style.width = pct + '%';
+        topBtn.classList.toggle('is-visible', doc.scrollTop > 250);
+        spy();
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll);
+      onScroll();
+
+      topBtn.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      printBtn.addEventListener('click', function () {
+        window.print();
+      });
+
+      /* --- Sumário: destaque da seção visível (scroll-spy) --- */
+      var links = Array.prototype.slice.call(document.querySelectorAll('.toc a'));
+      var sections = links
+        .map(function (link) { return document.querySelector(link.getAttribute('href')); })
+        .filter(Boolean);
+
+      function setActive(id) {
+        links.forEach(function (link) {
+          link.classList.toggle('is-active', link.getAttribute('href') === '#' + id);
+        });
+      }
+
+      /* Destaca a seção que ocupa o centro da tela; no fim da página,
+         garante que a última seção fique marcada. */
+      function spy() {
+        if (!sections || !sections.length) { return; }
+        if (typeof lockUntil === 'number' && Date.now() < lockUntil) { return; }
+        var mid = window.innerHeight * 0.4;
+        var current = sections[0].id;
+        for (var i = 0; i < sections.length; i++) {
+          if (sections[i].getBoundingClientRect().top <= mid) { current = sections[i].id; }
+        }
+        var doc = document.documentElement;
+        if (doc.scrollTop + window.innerHeight >= doc.scrollHeight - 4) {
+          current = sections[sections.length - 1].id;
+        }
+        setActive(current);
+      }
+
+      /* --- Rolagem suave ao clicar no sumário --- */
+      var lockUntil = 0;
+      links.forEach(function (link) {
+        link.addEventListener('click', function (event) {
+          event.preventDefault();
+          var target = document.querySelector(link.getAttribute('href'));
+          if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+          setActive(link.getAttribute('href').slice(1));
+          lockUntil = Date.now() + 900; /* o spy não sobrescreve durante a rolagem */
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
